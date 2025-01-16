@@ -6,7 +6,7 @@ const Header = () => {
 		<Nav>
 			<NavLink to='/'>
 				<Logo>
-					<img src='/logo.svg' alt='logo' />
+					<img src='./../../logo.svg' alt='logo' />
 				</Logo>
 			</NavLink>
 

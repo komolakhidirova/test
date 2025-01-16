@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux'
-import { Route, BrowserRouter as Router, Routes } from 'react-router'
+import { Route, HashRouter as Router, Routes } from 'react-router'
 import { PersistGate } from 'redux-persist/integration/react'
 import Header from './components/Header'
 import CreateProduct from './pages/CreateProduct'

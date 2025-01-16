@@ -4,12 +4,6 @@ import styled from 'styled-components'
 const Header = () => {
 	return (
 		<Nav>
-			<NavLink to='/'>
-				<Logo>
-					<img src='./../icons/logo.svg' alt='logo' />
-				</Logo>
-			</NavLink>
-
 			<NavMenu>
 				<NavLink to='/'>
 					<span>
@@ -46,21 +40,6 @@ const Nav = styled.nav`
 	padding: 0 36px;
 	letter-spacing: 16px;
 	z-index: 3;
-`
-
-const Logo = styled.div`
-	padding: 10px;
-	width: 50px;
-	margin-top: 4px;
-	max-height: 70px;
-	font-size: 0;
-	display: inline-block;
-
-	img {
-		display: block;
-		width: 100%;
-		color: white;
-	}
 `
 
 const NavMenu = styled.div`

@@ -2,7 +2,11 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import AllProducts from '../components/AllProducts'
 import FavProducts from '../components/FavProducts'
-;async () => {
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../app/store'
+import { setProducts } from '../features/productSlice'
+	
+const fetchProducts = async () => {
 	const res = await fetch(
 		'https://komolakhidirova.github.io/test-api/products.json'
 	)
@@ -23,6 +27,14 @@ const Products: React.FC = () => {
 			setFav(true)
 		}
 	}
+
+	const dispatch = useDispatch<AppDispatch>()
+
+	const loadProducts = async () => {
+		const products = fetchProducts()
+		dispatch(setProducts(products))
+	}
+	loadProducts()
 
 	return (
 		<Container>

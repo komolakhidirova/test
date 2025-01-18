@@ -2,21 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import AllProducts from '../components/AllProducts'
 import FavProducts from '../components/FavProducts'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../app/store'
-import { setProducts } from '../features/productSlice'
 	
-const fetchProducts = async () => {
-	const res = await fetch(
-		'https://komolakhidirova.github.io/test-api/products.json'
-	)
-	const data = await res.json()
-	return data.products.map((product: any, index: number) => ({
-		...product,
-		id: index + 1,
-	}))
-}
-
 const Products: React.FC = () => {
 	const [fav, setFav] = useState<boolean>(false)
 
@@ -27,14 +13,6 @@ const Products: React.FC = () => {
 			setFav(true)
 		}
 	}
-
-	const dispatch = useDispatch<AppDispatch>()
-
-	const loadProducts = async () => {
-		const products = fetchProducts()
-		dispatch(setProducts(products))
-	}
-	loadProducts()
 
 	return (
 		<Container>

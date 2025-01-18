@@ -1,9 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { AppDispatch } from '../app/store'
 import AllProducts from '../components/AllProducts'
 import FavProducts from '../components/FavProducts'
+import { setProducts } from '../features/productSlice'
+
+const fetchProducts = async () => {
+	const res = await fetch(
+		'https://komolakhidirova.github.io/test-api/products.json'
+	)
+	const data = await res.json()
+	return data.products.map((product: any, index: number) => ({
+		...product,
+		id: index + 1,
+	}))
+}
 	
 const Products: React.FC = () => {
+	const dispatch = useDispatch<AppDispatch>()
+
+	//@ts-ignore
+	const products = useSelector((state, RootState) => state.products.products)
+
+	useEffect(() => {
+		//@ts-ignore
+		if (products.length === 0) {
+			const loadProducts = async () => {
+				const products = await fetchProducts()
+				dispatch(setProducts(products))
+			}
+			loadProducts()
+		}
+	}, [dispatch, products])
+	
 	const [fav, setFav] = useState<boolean>(false)
 
 	const toggleFav = () => {
